@@ -1,0 +1,136 @@
+Q1:
+
+project[anom]((catalogue) join (articles));
+temp1(ANOM:VARCHAR)
+
+Number of tuples = 8
+Left Handed Toaster Cover:
+Smoke Shifter End:
+Acme Widget Washer:
+Brake for Crop Circles Sticker:
+Anti-Gravity Turbine Generator:
+Fire Hydrant Cap:
+7 Segment Display:
+Ferrari:
+
+Q2:
+
+project[anom,prix,fnom]((catalogue) join (articles) join (fournisseurs));
+temp2(ANOM:VARCHAR,PRIX:DECIMAL,FNOM:VARCHAR)
+
+Number of tuples = 17
+Left Handed Toaster Cover:36.1:kiventout:
+Smoke Shifter End:42.3:kiventout:
+Acme Widget Washer:15.3:kiventout:
+Acme Widget Washer:20.5:kiventout:
+Brake for Crop Circles Sticker:20.5:kiventout:
+Anti-Gravity Turbine Generator:124.23:kiventout:
+Fire Hydrant Cap:11.7:kiventout:
+7 Segment Display:75.2:kiventout:
+Left Handed Toaster Cover:16.5:Big Red Tool and Die:
+Anti-Gravity Turbine Generator:0.55:Big Red Tool and Die:
+Fire Hydrant Cap:7.95:Big Red Tool and Die:
+Fire Hydrant Cap:12.5:Perfunctory Parts:
+7 Segment Display:1.0:Perfunctory Parts:
+Acme Widget Washer:57.3:Alien Aircaft Inc.:
+Brake for Crop Circles Sticker:22.2:Alien Aircaft Inc.:
+Fire Hydrant Cap:48.6:Alien Aircaft Inc.:
+Ferrari:234555.67:Autolux:
+
+Q3:
+
+project[fid](select[acoul='rouge'](catalogue join articles));
+temp2(FID:INTEGER)
+
+Number of tuples = 5
+1:
+2:
+3:
+4:
+5:
+
+Q4:
+
+project[fnom](select[prix<20](catalogue join fournisseurs));
+temp2(FNOM:VARCHAR)
+
+Number of tuples = 3
+kiventout:
+Big Red Tool and Die:
+Perfunctory Parts:
+
+Q5:
+
+project[fid](catalogue minus select[prix<10000](catalogue));
+temp2(FID:INTEGER)
+
+Number of tuples = 1
+5:
+
+Q6:
+
+project[fnom,fad](fournisseurs join (catalogue minus select[prix<1000](catalogue)));
+temp3(FNOM:VARCHAR,FAD:VARCHAR)
+
+Number of tuples = 1
+Autolux:Milano:
+
+Q7:
+
+project[aid](select[acoul='vert'](articles)) times project[aid](select[acoul='rouge'](articles));
+temp4(temp1.AID:INTEGER,temp3.AID:INTEGER)
+
+Number of tuples = 8
+9:1:
+9:3:
+9:8:
+9:11:
+10:1:
+10:3:
+10:8:
+10:11:
+
+Q8:
+
+project[aid](articles) minus project[aid](catalogue);
+temp2(AID:INTEGER)
+
+Number of tuples = 1
+10:
+
+Q9:
+
+project[anom]((project[aid](articles) minus project[aid](catalogue))join articles);
+temp4(ANOM:VARCHAR)
+
+Number of tuples = 1
+Microsd Card USB Reader:
+
+Q10:
+
+project[fid](select[acoul='rouge'](catalogue join articles)) join project[fid](select[acoul='vert'](catalogue join articles)) ;
+temp6(FID:INTEGER)
+
+Number of tuples = 2
+1:
+3:
+
+Q11: 
+
+project[fnom](select[acoul='noir'](catalogue join fournisseurs join articles));
+temp3(FNOM:VARCHAR)
+
+Number of tuples = 1
+kiventout:
+
+Q12:
+
+
+Q13:
+project[fnom](fournisseurs join (project[fid](fournisseurs) minus (project[fid](select[acoul='noir'](articles join catalogue))) minus (project[fid](select[acoul='argente'](articles join catalogue)));
+
+
+
+
+
+
